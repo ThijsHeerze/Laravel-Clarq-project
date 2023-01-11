@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand", sans-serif;
+    color: black;
+    background-color: black;
+}
+
+@mixin center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create_todo{
+    @include center;
+    background-color: blue;
+}
+
+.form_edit{
+    .input_edit{
+
+    }
+}
