@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateTaskRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Task;
@@ -24,7 +25,7 @@ class TaskController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(UpdateTaskRequest $request)
     {
         Task::create([
             'user_id' => $request->get('user_id'),
@@ -54,7 +55,7 @@ class TaskController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateTaskRequest $request, $id)
     {
         $task = Task::where('id', $id)->first();
         $task->update([

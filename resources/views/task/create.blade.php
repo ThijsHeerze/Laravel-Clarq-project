@@ -28,7 +28,6 @@
                 <option value="{{ $user->id }}">{{ $user->name }}</option>
                 @endforeach
             </select>
-{{--            {{$test}}--}}
             <x-forms.label name="title" label="Title" for="title"></x-forms.label>
             <x-forms.input type="text" name="title" value=""></x-forms.input>
             <x-forms.label name="description" label="Description" for="description"></x-forms.label>

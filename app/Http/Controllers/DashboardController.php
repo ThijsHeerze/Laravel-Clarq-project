@@ -10,7 +10,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // morgen mee verder
+        // alleen tasks van de user waarvan je bent ingelogd
         $task = Task::all();
         return view('dashboard.index')->with([
             'tasks'=>$task
@@ -19,10 +19,7 @@ class DashboardController extends Controller
 
     public function create()
     {
-        $users = User::all();
-        return view('task.create')->with([
-            'users'=>$users,
-        ]);
+
     }
 
     public function store(Request $request)

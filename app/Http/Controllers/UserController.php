@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -22,7 +23,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function store(Request $request){
+    public function store(UpdateUserRequest $request){
         $password = $request->get('password');
         $hashed = Hash::make($password);
         User::create([
@@ -50,7 +51,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id){
+    public function update(UpdateUserRequest $request, $id){
         $user = User::where('id', $id)->first();
         $password = $request->get('password');
         $hashed = Hash::make($password);

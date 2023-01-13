@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Login;
 use Illuminate\Support\Facades\Password;
+use App\Http\Requests\UpdateUserRequest;
 
 class LoginController extends Controller
 {
@@ -27,9 +28,18 @@ class LoginController extends Controller
 
     public function store(Request $request)
     {
+        $login = Login::all();
+        $validated = $request->validate([
+            'title' => 'required|unique:posts|max:255',
+            'body' => 'required',
+        ]);
+        return view('login.index')->with([
+            'login'=>$login
+        ]);
+
         Login::create([
             'email' => $request->get('email'),
-            'password' => $request->get('password')
+            'password' => $request->get('password'),
         ]);
 
         return redirect()->route('logins.index');
