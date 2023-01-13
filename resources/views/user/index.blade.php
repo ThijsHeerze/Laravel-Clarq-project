@@ -34,7 +34,7 @@
 <body class="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
     <x-forms.title title="Users"/>
     <div class="flex justify-end w-4/6">
-        <a href="{{ route('users.create') }}" class="w-30 h-10 bg-white hover:text-green-600 mb-4 mr-10 p-2 flex justify-center rounded text-black hover:bg-gray-300 hover:text-white duration-300 hover:bg-opacity-20 animate-none">Create user</a>
+        <a href="{{ route('users.create') }}" class="w-30 h-10 text-white bg-blue-600 hover:bg-blue-700 mb-4 mr-10 p-2 flex justify-center rounded duration-300 animate-none">Create user</a>
     </div>
     <table class="flex justify-center">
         <tr class="bg-gray-300 bg-opacity-40">
@@ -47,8 +47,8 @@
             <td class="">{{$user->name}}</td>
             <td class="">{{$user->email}}</td>
             <td class="flex justify-center">
-                <a href="{{ route('users.edit',$user->id)}}" class="w-2/4 bg-white hover:bg-gray-300 hover:text-white duration-300 hover:bg-opacity-20 p-2 ml-1 mr-1 rounded flex justify-center cursor-pointer">Edit</a>
-                <form class="w-2/4 bg-white p-2 rounded flex justify-center cursor-pointer hover:bg-gray-300 hover:text-white duration-300 hover:bg-opacity-20" action="{{ route('users.destroy', $user->id) }}" method="post">
+                <a href="{{ route('users.edit',$user->id)}}" class="w-2/4 bg-sky-400 hover:bg-sky-500 duration-300 p-2 ml-1 mr-1 rounded flex justify-center cursor-pointer">Edit</a>
+                <form class="w-2/4 bg-red-500 p-2 rounded flex justify-center cursor-pointer hover:bg-red-600 duration-300 text-white" action="{{ route('users.destroy', $user->id) }}" method="post">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="cursor-pointer" value="Delete">Delete</button>

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function index(){
+        //all()?
         $user = User::all();
         return view('user.index')->with([
             'users' => $user

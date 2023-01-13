@@ -39,8 +39,8 @@
                 <td class="">{{$task->description}}</td>
                 <td class="">{{$task->deadline}}</td>
                 <td class="flex justify-center">
-                    <a href="{{ route('dashboard.edit',$task->id)}}" class="w-2/4 bg-white hover:bg-gray-300 hover:text-white duration-300 hover:bg-opacity-20 p-2 ml-1 mr-1 rounded flex justify-center cursor-pointer">Edit</a>
-                    <form class="w-2/4 bg-white p-2 rounded flex justify-center cursor-pointer hover:bg-gray-300 hover:text-white duration-300 hover:bg-opacity-20" action="{{ route('dashboard.destroy', $task->id) }}" method="post">
+                    <a href="{{ route('dashboard.edit',$task->id)}}" class="w-2/4 bg-sky-400 hover:bg-sky-500 duration-300 p-2 ml-1 mr-1 rounded flex justify-center cursor-pointer">Edit</a>
+                    <form class="w-2/4 bg-red-500 p-2 rounded flex justify-center cursor-pointer hover:bg-red-600 duration-300 text-white" action="{{ route('dashboard.destroy', $task->id) }}" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="cursor-pointer" value="Delete">Delete</button>

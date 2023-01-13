@@ -21,3 +21,6 @@ Route::resource('tasks', TaskController::class);
 Route::resource('users', UserController::class);
 Route::resource('login', LoginController::class);
 Route::resource('dashboard', DashboardController::class);
+Route::get('index', [LoginController::class, 'index'])->name('login');
+Route::post('post-login', [LoginController::class, 'postLogin'])->name('login.post');
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
