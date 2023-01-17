@@ -35,30 +35,21 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
         //authenticatie
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('task');
+            return redirect()->route('dashboard');
         }
         $request->session()->flash('status', 'Not logged in');
-        return redirect('login.index');
+        return redirect()->route('login.index');
     }
 
     public function logout()
     {
+        //session destroy
         Session::flush();
         Auth::logout();
 
         return Redirect('login.index');
     }
 }
-
-//class LoginController extends Controller
-//{
-//    public function index()
-//{
-//    $login = Login::all();
-//    return view('login.index')->with([
-//        'logins'=>$login
-//    ]);
-//}
 
 //    public function create()
 //    {

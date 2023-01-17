@@ -11,7 +11,7 @@ class DashboardController extends Controller
     public function index()
     {
         // alleen tasks van de user waarvan je bent ingelogd
-        $task = Task::all();
+        $task = Task::where('user_id', auth()->user()->id)->get();
         return view('dashboard.index')->with([
             'tasks'=>$task
         ]);

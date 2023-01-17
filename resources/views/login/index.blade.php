@@ -33,20 +33,20 @@
     </header>
 <body class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-yellow-300">
     <x-forms.title title="Login"/>
-    <form class="flex justify-center">
-        <div href="{{ route('login.store') }}" class="" method="post">
-            @csrf
-            @if (request()->session()->has('status'))
-                <span>{{session('status')}}</span>
-            @endif
-            <x-forms.label name="email" label="Email" for="email"></x-forms.label>
-            <x-forms.input type="text" name="email" value=""></x-forms.input>
-            <x-forms.label name="password" label="Password" for="password"></x-forms.label>
-            <x-forms.input type="password" name="password" value=""></x-forms.input>
-            <div class="flex justify-center">
-                <a href="{{ route('dashboard.index') }}" class="flex justify-center border border-transparent shadow-2xl focus:outline-none focus:ring-2 focus:ring-black bg-white hover:text-white hover:bg-blue-500 w-1/2 h-12 font-bold py-2 px-4 mt-6 rounded-3xl transition-colors duration-300 animate-none" type="submit" id="submit" name="submit" value="submit">Login</a>
-            </div>
+    <div class="flex justify-center">
+    <form class="flex justify-center" method="post" action="{{ route('login.post') }}">
+        @csrf
+        @if (request()->session()->has('status'))
+            <span>{{session('status')}}</span>
+        @endif
+        <x-forms.label name="email" label="Email" for="email"></x-forms.label>
+        <x-forms.input type="text" name="email" value=""></x-forms.input>
+        <x-forms.label name="password" label="Password" for="password"></x-forms.label>
+        <x-forms.input type="password" name="password" value=""></x-forms.input>
+        <div class="flex justify-center">
+            <button class="flex justify-center border border-transparent shadow-2xl focus:outline-none focus:ring-2 focus:ring-black bg-white hover:text-white hover:bg-blue-500 w-1/2 h-12 font-bold py-2 px-4 mt-6 rounded-3xl transition-colors duration-300 animate-none" type="submit" id="submit" name="submit" value="submit">Login</button>
         </div>
     </form>
+    </div>
 </body>
 </html>
