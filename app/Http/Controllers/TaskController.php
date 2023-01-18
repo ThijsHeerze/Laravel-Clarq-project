@@ -48,6 +48,7 @@ class TaskController extends Controller
     }
 
     public function edit($id)
+        //Edit is for displaying a form to apply changes
     {
         $task = Task::where('id', $id)->first();
         return view('task.edit')->with([
@@ -56,6 +57,7 @@ class TaskController extends Controller
     }
 
     public function update(UpdateTaskRequest $request, $id)
+        //Update is used to set them up to server
     {
         $task = Task::where('id', $id)->first();
         $task->update([

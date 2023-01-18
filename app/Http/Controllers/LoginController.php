@@ -37,7 +37,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             return redirect()->route('dashboard');
         }
-        $request->session()->flash('status', 'Not logged in');
+        $request->session()->flash('status', 'Wrong combination');
         return redirect()->route('login.index');
     }
 

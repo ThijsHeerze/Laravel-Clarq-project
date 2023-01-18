@@ -22,32 +22,45 @@
     </style>
     @vite('resources/css/app.css')
 </head>
-    <header class="flex justify-center">
-        <nav>
-            <ul class="flex justify-center m-2">
-                <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('tasks.index') }}">Tasks</a></li>
-                <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('users.index') }}">Users</a></li>
-                <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('login.index') }}">Login</a></li>
-            </ul>
-        </nav>
-    </header>
-<body class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-yellow-300">
-    <x-forms.title title="Login"/>
-    <div class="flex justify-center">
-        <form class="" method="post" action="{{ route('login.post') }}">
-            @csrf
-            @if (request()->session()->has('status'))
-                <span>{{session('status')}}</span>
-            @endif
-                    <x-forms.label name="email" label="Email" for="email"></x-forms.label>
-                    <x-forms.input type="text" name="email" value=""></x-forms.input>
-                    <x-forms.label name="password" label="Password" for="password"></x-forms.label>
-                    <x-forms.input type="password" name="password" value=""></x-forms.input>
-                <div class="flex justify-center">
-                    <button class="flex justify-center border border-transparent shadow-2xl focus:outline-none focus:ring-2 focus:ring-black bg-white hover:text-white hover:bg-blue-500 w-1/2 h-12 font-bold py-2 px-4 mt-6 rounded-3xl transition-colors duration-300 animate-none" type="submit" id="submit" name="submit" value="submit">Login</button>
-                </div>
-        </form>
-    </div>
-
+<header class="flex justify-center">
+    <nav>
+        <ul class="flex justify-center m-2">
+            <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('tasks.index') }}">Tasks</a></li>
+            <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('users.index') }}">Users</a></li>
+            <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('login.index') }}">Login</a></li>
+            <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('categories.index') }}">Categories</a></li>
+        </ul>
+    </nav>
+</header>
+<body class="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
+<x-forms.title title="Tasks"/>
+<div class="flex justify-end w-4/6">
+    <a href="{{ route('tasks.create') }}" class="w-30 h-10 text-white bg-blue-600 hover:bg-blue-700 mb-4 mr-10 p-2 flex justify-center rounded duration-300 animate-none">Create task</a>
+</div>
+<table class="flex justify-center">
+    <tr class="bg-gray-300 bg-opacity-40 max-w-md">
+        <th class="">User</th>
+        <th class="">Title</th>
+        <th class="">Description</th>
+        <th class="">Deadline</th>
+        <th class="columns-2">Action</th>
+    </tr>
+    @foreach($tasks as $task)
+        <tr class="bg-gray-200 bg-opacity-5">
+            <td class="">{{$task->user->name}}</td>
+            <td class="">{{$task->title}}</td>
+            <td class="">{{$task->description}}</td>
+            <td class="">{{$task->deadline}}</td>
+            <td class="flex justify-center">
+                <a href="{{ route('tasks.edit',$task->id)}}" class="w-2/4 bg-sky-400 hover:bg-sky-500 duration-300 p-2 ml-1 mr-1 rounded flex justify-center cursor-pointer">Edit</a>
+                <form class="w-2/4 bg-red-500 p-2 rounded flex justify-center cursor-pointer hover:bg-red-600 duration-300 text-white" action="{{ route('tasks.destroy', $task->id) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="cursor-pointer" value="Delete">Delete</button>
+                </form>
+            </td>
+        </tr>
+    @endforeach
+</table>
 </body>
 </html>
