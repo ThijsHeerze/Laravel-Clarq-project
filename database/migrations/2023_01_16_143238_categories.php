@@ -15,10 +15,7 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade'); //The onDelete('cascade') means that when the row is deleted, it will delete all it's references and attached data too
-            $table->string('title');
-            $table->text('description')->nullable();
-            $table->date('deadline');
+            $table->string('name');
             $table->timestamps();
         });
     }

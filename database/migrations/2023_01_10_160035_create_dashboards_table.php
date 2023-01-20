@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('dashboards', function (Blueprint $table) {
             $table->id();
-            $table->id('user_id');
+            $table->foreignId('user_id');
             $table->string('title')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

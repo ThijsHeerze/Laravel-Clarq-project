@@ -15,7 +15,7 @@ class CategoryController extends Controller
     {
         $category = Category::all();
         return view('category.index')->with([
-            'category'=>$category
+            'categories'=>$category
         ]);
     }
 
@@ -27,15 +27,12 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function store(UpdateCategoryRequest $request)
+    public function store(Request $request)
     {
         Category::create([
-            'user_id' => $request->get('user_id'),
-            'title' => $request->get('title'),
-            'description' => $request->get('description'),
-            'deadline' => $request->get('deadline')
+            'name' => $request->get('name'),
         ]);
-        return redirect()->route('categories.index');
+        return redirect()->route('category.index');
     }
 
     public function show($id)
