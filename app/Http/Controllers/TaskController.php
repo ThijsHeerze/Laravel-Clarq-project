@@ -6,6 +6,7 @@ use App\Http\Requests\UpdateTaskRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\Category;
 
 class TaskController extends Controller
 {
@@ -15,6 +16,13 @@ class TaskController extends Controller
         return view('task.index')->with([
             'tasks'=>$task
         ]);
+//        $task = Task::with([
+//            'user',
+//            'categories'
+//        ])->orderBy('deadline')->get();
+//        return view('task.index')->with([
+//            'tasks' => $task
+//        ]);
     }
 
     public function create()
@@ -52,7 +60,9 @@ class TaskController extends Controller
     {
         $task = Task::where('id', $id)->first();
         return view('task.edit')->with([
-            'task'=>$task
+            'task'=>$task,
+            //select category
+            'categories' => $this->selectableCategories(),
         ]);
     }
 
@@ -65,6 +75,8 @@ class TaskController extends Controller
             'description' => $request->get('description'),
             'deadline' => $request->get('deadline')
         ]);
+        //
+        $task->categories()->sync($request->get('category_id'));
         return redirect()->route('tasks.index');
     }
 
@@ -72,5 +84,13 @@ class TaskController extends Controller
     {
         Task::destroy($id);
         return redirect()->route('tasks.index');
+    }
+
+    private function selectableCategories()
+    {
+        return Category::all([
+            'id',
+            'name'
+        ])->pluck('name', 'id')->toArray();
     }
 }

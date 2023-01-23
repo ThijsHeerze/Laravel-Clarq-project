@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use App\Models\Category;
+use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         //all()?
         $user = User::all();
         return view('user.index')->with([
@@ -17,14 +20,16 @@ class UserController extends Controller
         ]);
     }
 
-    public function create(){
+    public function create()
+    {
         $user = User::all();
         return view('user.create')->with([
             'user' => $user
         ]);
     }
 
-    public function store(UpdateUserRequest $request){
+    public function store(UpdateUserRequest $request)
+    {
         $password = $request->get('password');
         $hashed = Hash::make($password);
         User::create([
@@ -35,7 +40,8 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
-    public function show($id){
+    public function show($id)
+    {
         $user = User::where('id', $id)->first();
         if (is_null($user)) {
             return abort(404, 'error');
@@ -45,14 +51,16 @@ class UserController extends Controller
         ]);
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $user = User::where('id', $id)->first();
         return view('user.edit')->with([
             'user'=>$user
         ]);
     }
 
-    public function update(UpdateUserRequest $request, $id){
+    public function update(UpdateUserRequest $request, $id)
+    {
         $user = User::where('id', $id)->first();
         $password = $request->get('password');
         $hashed = Hash::make($password);
@@ -64,7 +72,8 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         User::destroy($id);
         return redirect()->route('users.index');
     }

@@ -27,7 +27,7 @@
             <ul class="flex justify-center m-2">
                 <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('tasks.index') }}">Tasks</a></li>
                 <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('users.index') }}">Users</a></li>
-                <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('category.index') }}">Categories</a></li>
+                <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('categories.index') }}">Categories</a></li>
                 <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('login.index') }}">Login</a></li>
             </ul>
         </nav>
@@ -40,6 +40,7 @@
     <table class="flex justify-center">
         <tr class="bg-gray-300 bg-opacity-40 max-w-md">
             <th class="">User</th>
+            <th class="">Category</th>
             <th class="">Title</th>
             <th class="">Description</th>
             <th class="">Deadline</th>
@@ -48,6 +49,9 @@
         @foreach($tasks as $task)
         <tr class="bg-gray-200 bg-opacity-5">
             <td class="">{{$task->user->name}}</td>
+            @foreach($tasks->categories as $category)
+                <td class="">{{$category->name}}</td>
+            @endforeach
             <td class="">{{$task->title}}</td>
             <td class="">{{$task->description}}</td>
             <td class="">{{$task->deadline}}</td>

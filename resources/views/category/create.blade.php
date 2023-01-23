@@ -9,7 +9,7 @@
 </head>
 <body class="bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-green-500">
 <x-forms.title title="Create Category"/>
-<form action="{{ route('category.store') }}" class="flex justify-center" method="post">
+<form action="{{ route('categories.store') }}" class="flex justify-center" method="post">
     <div class="">
         @csrf
 {{--        <x-forms.label class="text-lg font-semibold mb-4 " name="user" label="User" for="user">User</x-forms.label>--}}

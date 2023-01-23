@@ -32,7 +32,7 @@ class CategoryController extends Controller
         Category::create([
             'name' => $request->get('name'),
         ]);
-        return redirect()->route('category.index');
+        return redirect()->route('categories.index');
     }
 
     public function show($id)
@@ -54,13 +54,11 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function update(UpdateCategoryRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $category = Category::where('id', $id)->first();
         $category->update([
-            'title' => $request->get('title'),
-            'description' => $request->get('description'),
-            'deadline' => $request->get('deadline')
+            'name' => $request->get('name'),
         ]);
         return redirect()->route('categories.index');
     }

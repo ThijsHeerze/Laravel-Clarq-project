@@ -21,7 +21,7 @@ use App\Http\Controllers\CategoryController;
 
 Route::resource('tasks', TaskController::class);
 Route::resource('users', UserController::class);
-Route::resource('category', CategoryController::class);
+Route::resource('categories', CategoryController::class);
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('login', [LoginController::class, 'index'])->name('login.index');
 Route::post('post-login', [LoginController::class, 'postLogin'])->name('login.post');

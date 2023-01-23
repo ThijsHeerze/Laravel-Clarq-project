@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Login;
+use App\Models\Category;
+use App\Models\Task;
 use Illuminate\Support\Facades\Password;
 use App\Http\Requests\UpdateUserRequest;
 use Session;

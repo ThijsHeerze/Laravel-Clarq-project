@@ -27,7 +27,7 @@
         <ul class="flex justify-center m-2">
             <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('tasks.index') }}">Tasks</a></li>
             <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('users.index') }}">Users</a></li>
-            <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('category.index') }}">Categories</a></li>
+            <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('categories.index') }}">Categories</a></li>
             <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('login.index') }}">Login</a></li>
         </ul>
     </nav>
@@ -35,7 +35,7 @@
 <body class="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
 <x-forms.title title="Categories"/>
 <div class="flex justify-end w-4/6">
-    <a href="{{ route('category.create') }}" class="w-30 h-10 text-white bg-blue-600 hover:bg-blue-700 mb-4 mr-10 p-2 flex justify-center rounded duration-300 animate-none">Create category</a>
+    <a href="{{ route('categories.create') }}" class="w-30 h-10 text-white bg-blue-600 hover:bg-blue-700 mb-4 mr-10 p-2 flex justify-center rounded duration-300 animate-none">Create category</a>
 </div>
 <table class="flex justify-center">
     <tr class="bg-gray-300 bg-opacity-40 max-w-md">
@@ -46,8 +46,8 @@
         <tr class="bg-gray-200 bg-opacity-5">
             <td class="">{{$category->name}}</td>
             <td class="flex justify-center">
-                <a href="{{ route('category.edit',$category->id)}}" class="w-2/4 bg-sky-400 hover:bg-sky-500 duration-300 p-2 ml-1 mr-1 rounded flex justify-center cursor-pointer">Edit</a>
-                <form class="w-2/4 bg-red-500 p-2 rounded flex justify-center cursor-pointer hover:bg-red-600 duration-300 text-white" action="{{ route('category.destroy', $category->id) }}" method="post">
+                <a href="{{ route('categories.edit',$category->id)}}" class="w-2/4 bg-sky-400 hover:bg-sky-500 duration-300 p-2 ml-1 mr-1 rounded flex justify-center cursor-pointer">Edit</a>
+                <form class="w-2/4 bg-red-500 p-2 rounded flex justify-center cursor-pointer hover:bg-red-600 duration-300 text-white" action="{{ route('categories.destroy', $category->id) }}" method="post">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="cursor-pointer" value="Delete">Delete</button>

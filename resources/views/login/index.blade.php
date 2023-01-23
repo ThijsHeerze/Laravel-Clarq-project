@@ -27,7 +27,7 @@
             <ul class="flex justify-center m-2">
                 <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('tasks.index') }}">Tasks</a></li>
                 <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('users.index') }}">Users</a></li>
-                <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('category.index') }}">Categories</a></li>
+                <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('categories.index') }}">Categories</a></li>
                 <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('login.index') }}">Login</a></li>
             </ul>
         </nav>
@@ -40,15 +40,14 @@
             @if (request()->session()->has('status'))
                 <span>{{session('status')}}</span>
             @endif
-                    <x-forms.label name="email" label="Email" for="email"></x-forms.label>
-                    <x-forms.input type="text" name="email" value=""></x-forms.input>
-                    <x-forms.label name="password" label="Password" for="password"></x-forms.label>
-                    <x-forms.input type="password" name="password" value=""></x-forms.input>
-                <div class="flex justify-center">
-                    <button class="flex justify-center border border-transparent shadow-2xl focus:outline-none focus:ring-2 focus:ring-black bg-white hover:text-white hover:bg-blue-500 w-1/2 h-12 font-bold py-2 px-4 mt-6 rounded-3xl transition-colors duration-300 animate-none" type="submit" id="submit" name="submit" value="submit">Login</button>
-                </div>
+                <x-forms.label name="email" label="Email" for="email"></x-forms.label>
+                <x-forms.input type="text" name="email" value=""></x-forms.input>
+                <x-forms.label name="password" label="Password" for="password"></x-forms.label>
+                <x-forms.input type="password" name="password" value=""></x-forms.input>
+            <div class="flex justify-center">
+                <button class="flex justify-center border border-transparent shadow-2xl focus:outline-none focus:ring-2 focus:ring-black bg-white hover:text-white hover:bg-blue-500 w-1/2 h-12 font-bold py-2 px-4 mt-6 rounded-3xl transition-colors duration-300 animate-none" type="submit" id="submit" name="submit" value="submit">Login</button>
+            </div>
         </form>
     </div>
-
 </body>
 </html>

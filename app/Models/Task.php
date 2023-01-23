@@ -17,7 +17,7 @@ class Task extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function category()
+    public function categories()
     {
         //Many-to-many relationships are defined by writing a method that returns the result of the belongsToMany method
         return $this->belongsToMany(Category::class);
