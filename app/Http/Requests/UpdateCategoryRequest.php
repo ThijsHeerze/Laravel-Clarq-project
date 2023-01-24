@@ -25,7 +25,7 @@ class UpdateCategoryRequest extends FormRequest
     {
         return [
             //voorwaarden
-
+            'name' => 'required|max:255',
         ];
     }
 }

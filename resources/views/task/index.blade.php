@@ -50,14 +50,14 @@
         <tr class="bg-gray-200 bg-opacity-5">
             <td class="">{{$task->user->name}}</td>
             @foreach($tasks->categories as $category)
-                <td class="">{{$category->name}}</td>
+                <td class="">{{$task->category->name}}</td>
             @endforeach
             <td class="">{{$task->title}}</td>
             <td class="">{{$task->description}}</td>
             <td class="">{{$task->deadline}}</td>
             <td class="flex justify-center">
                 <a href="{{ route('tasks.edit',$task->id)}}" class="w-2/4 bg-sky-400 hover:bg-sky-500 duration-300 p-2 ml-1 mr-1 rounded flex justify-center cursor-pointer">Edit</a>
-                <form class="w-2/4 bg-red-500 p-2 rounded flex justify-center cursor-pointer hover:bg-red-600 duration-300 text-white" action="{{ route('tasks.destroy', $task->id) }}" method="post">
+                <form action="{{ route('tasks.destroy', $task->id) }}" method="post" class="w-2/4 bg-red-500 p-2 rounded flex justify-center cursor-pointer hover:bg-red-600 duration-300 text-white">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="cursor-pointer" value="Delete">Delete</button>

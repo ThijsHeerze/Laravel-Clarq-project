@@ -28,6 +28,9 @@
                 <option value="{{ $user->id }}">{{ $user->name }}</option>
                 @endforeach
             </select>
+            @foreach($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
             <x-forms.label name="title" label="Title" for="title"></x-forms.label>
             <x-forms.input type="text" name="title" value=""></x-forms.input>
             <x-forms.label name="description" label="Description" for="description"></x-forms.label>

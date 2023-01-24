@@ -12,24 +12,25 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $task = Task::all();
-        return view('task.index')->with([
-            'tasks'=>$task
+        $task = Task::with([
+            'categories'
         ]);
-//        $task = Task::with([
-//            'user',
-//            'categories'
-//        ])->orderBy('deadline')->get();
-//        return view('task.index')->with([
-//            'tasks' => $task
-//        ]);
+        return view('task.index')->with([
+            'tasks'=>$task,
+        ]);
     }
 
     public function create()
     {
-        $users = User::all();
+        $task = Task::with([
+            'categories'
+        ]);
+        $user = User::with([
+            'categories'
+        ]);
         return view('task.create')->with([
-            'users'=>$users,
+            'users'=>$user,
+            'tasks'=>$task,
         ]);
     }
 
