@@ -28,9 +28,13 @@ class TaskController extends Controller
         $user = User::with([
             'categories'
         ]);
+        $category = Category::with([
+            'categories'
+        ]);
         return view('task.create')->with([
             'users'=>$user,
             'tasks'=>$task,
+            'categories'=>$category
         ]);
     }
 
