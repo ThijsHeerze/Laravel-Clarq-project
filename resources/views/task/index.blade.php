@@ -25,18 +25,19 @@
     <header class="flex justify-center">
         <nav>
             <ul class="flex justify-center m-2">
-                <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('tasks.index') }}">Tasks</a></li>
-                <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('users.index') }}">Users</a></li>
-                <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('categories.index') }}">Categories</a></li>
-                <li class="hover:bg-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('login.index') }}">Login</a></li>
+                <li class="hover:text-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('tasks.index') }}">Tasks</a></li>
+                <li class="hover:text-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('users.index') }}">Users</a></li>
+                <li class="hover:text-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('categories.index') }}">Categories</a></li>
+                <li class="hover:text-white rounded m-1 font-bold py-2 px-4 cursor-pointer flex justify-center duration-300"><a class="" href="{{ route('login.index') }}">Login</a></li>
             </ul>
         </nav>
     </header>
-<body class="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
+<body class="bg-clip-text text-transparent bg-gradient-to-r from-violet-500">
     <x-forms.title title="Tasks"/>
-    <div class="flex justify-end w-4/6">
+    <div class="flex justify-end">
         <a href="{{ route('tasks.create') }}" class="w-30 h-10 text-white bg-blue-600 hover:bg-blue-700 mb-4 mr-10 p-2 flex justify-center rounded duration-300 animate-none">Create task</a>
     </div>
+    <hr class="mb-5">
     <table class="flex justify-center">
         <tr class="bg-gray-300 bg-opacity-40 max-w-md">
             <th class="">User</th>
@@ -49,9 +50,11 @@
         @foreach($tasks as $task)
         <tr class="bg-gray-200 bg-opacity-5">
             <td class="">{{$task->user->name}}</td>
-            @foreach($tasks->categories as $category)
-                <td class="">{{$task->category->name}}</td>
+            <td class="">
+            @foreach($task->categories as $category)
+                {{$category->name}},
             @endforeach
+            </td>
             <td class="">{{$task->title}}</td>
             <td class="">{{$task->description}}</td>
             <td class="">{{$task->deadline}}</td>

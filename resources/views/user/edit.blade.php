@@ -7,7 +7,7 @@
     <title>Document</title>
     @vite('resources/css/app.css')
 </head>
-<body class="bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-orange-500">
+<body class="bg-clip-text text-transparent bg-gradient-to-r from-sky-500 to-red-500">
 <x-forms.title title="Edit user"/>
     <form class="flex justify-center" action="{{ route('users.update', $user->id) }}" method="post">
         <div class="">

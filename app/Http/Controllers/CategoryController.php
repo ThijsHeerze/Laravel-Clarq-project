@@ -21,9 +21,9 @@ class CategoryController extends Controller
 
     public function create()
     {
-        $categories = Category::all();
+        $category = Category::all();
         return view('category.create')->with([
-            'categories'=>$categories,
+            'categories'=>$category,
         ]);
     }
 
@@ -37,12 +37,14 @@ class CategoryController extends Controller
 
     public function show($id)
     {
+        $task = Task::all();
         $category = Category::where('id', $id)->first();
         if (is_null($category)) {
             return abort(404, 'error');
         }
         return view('category.show')->with([
-            'category' =>$category
+            'category' => $category,
+            'task' => $task
         ]);
     }
 

@@ -12,18 +12,18 @@
     <form action="{{ route('tasks.store') }}" class="flex justify-center" method="post">
         <div class="">
             @csrf
-            <x-forms.label class="text-lg font-semibold mb-4 " name="user" label="User" for="user"></x-forms.label>
-            <select class="border border-transparent focus:outline-none focus:ring-2 focus:ring-black shadow-gray-700 shadow-lg shadow-2xl appearance-none border flex rounded-3xl w-64 py-2 px-3 mb-4 text-gray-700 focus:outline-none focus:shadow-outline flex justify-center" name="user_id">
+            <x-forms.label name="user" label="User" for="user"></x-forms.label>
+            <select class="border border-transparent focus:outline-none focus:ring-2 focus:ring-black shadow-gray-700 shadow-lg shadow-2xl appearance-none border rounded-3xl w-64 py-2 px-3 mb-4 text-gray-700 focus:outline-none focus:shadow-outline flex justify-center" name="user_id">
                 @foreach($users as $user)
                 <option value="{{ $user->id }}">{{ $user->name }}</option>
                 @endforeach
             </select>
-            <x-forms.label class="text-lg font-semibold mb-4 " name="category" label="Category" for="category"></x-forms.label>
-            <select class="border border-transparent focus:outline-none focus:ring-2 focus:ring-black shadow-gray-700 shadow-lg shadow-2xl appearance-none border flex rounded-3xl w-64 py-2 px-3 mb-4 text-gray-700 focus:outline-none focus:shadow-outline flex justify-center" name="user_id">
+            <x-forms.label name="category" label="Category" for="category"></x-forms.label>
+            <div class="flex justify-center">
             @foreach($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                <input type="checkbox" id="{{ $category->name }}" name="category_id[]" value="{{ $category->id }}" class="w-10 py-2 px-3 text-black flex justify-center flex-wrap cursor-pointer"/>{{ $category->name }}
             @endforeach
-            </select>
+            </div>
             <x-forms.label name="title" label="Title" for="title"></x-forms.label>
             <x-forms.input type="text" name="title" value=""></x-forms.input>
             <x-forms.label name="description" label="Description" for="description"></x-forms.label>

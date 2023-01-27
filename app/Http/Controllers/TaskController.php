@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\Category;
+use function GuzzleHttp\Promise\all;
 
 class TaskController extends Controller
 {
@@ -14,7 +15,7 @@ class TaskController extends Controller
     {
         $task = Task::with([
             'categories'
-        ]);
+        ])->get();
         return view('task.index')->with([
             'tasks'=>$task,
         ]);
@@ -22,30 +23,25 @@ class TaskController extends Controller
 
     public function create()
     {
-        $task = Task::with([
-            'categories'
-        ]);
-        $user = User::with([
-            'categories'
-        ]);
-        $category = Category::with([
-            'categories'
-        ]);
+        $user = User::all();
+        $category = Category::all();
         return view('task.create')->with([
             'users'=>$user,
-            'tasks'=>$task,
             'categories'=>$category
         ]);
     }
 
     public function store(UpdateTaskRequest $request)
     {
-        Task::create([
+        $task = Task::create([
             'user_id' => $request->get('user_id'),
+            'name' => $request->get('name'),
             'title' => $request->get('title'),
             'description' => $request->get('description'),
             'deadline' => $request->get('deadline')
         ]);
+        //
+        $task->categories()->sync($request->get('category_id') ?? []);
         return redirect()->route('tasks.index');
     }
 
@@ -63,15 +59,15 @@ class TaskController extends Controller
     public function edit($id)
         //Edit is for displaying a form to apply changes
     {
+        $category = Category::all();
         $task = Task::where('id', $id)->first();
         return view('task.edit')->with([
             'task'=>$task,
-            //select category
-            'categories' => $this->selectableCategories(),
+            'categories'=>$category
         ]);
     }
 
-    public function update(UpdateTaskRequest $request, $id)
+    public function update(Request $request, $id)
         //Update is used to set them up to server
     {
         $task = Task::where('id', $id)->first();
@@ -89,13 +85,5 @@ class TaskController extends Controller
     {
         Task::destroy($id);
         return redirect()->route('tasks.index');
-    }
-
-    private function selectableCategories()
-    {
-        return Category::all([
-            'id',
-            'name'
-        ])->pluck('name', 'id')->toArray();
     }
 }
