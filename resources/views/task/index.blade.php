@@ -48,18 +48,20 @@
             <th class="columns-2">Action</th>
         </tr>
         @foreach($tasks as $task)
+{{--            haalt alle taken op--}}
         <tr class="bg-gray-200 bg-opacity-5">
-            <td class="">{{$task->user->name}}</td>
+            <td class="">{{ $task->user->name }}</td>
             <td class="">
             @foreach($task->categories as $category)
-                {{$category->name}},
+{{--                haalt alle taken op die zijn gekoppelt aan een categorie--}}
+                {{ $category->name }},
             @endforeach
             </td>
-            <td class="">{{$task->title}}</td>
-            <td class="">{{$task->description}}</td>
-            <td class="">{{$task->deadline}}</td>
+            <td class="">{{ $task->title }}</td>
+            <td class="">{{ $task->description }}</td>
+            <td class="">{{ $task->deadline }}</td>
             <td class="flex justify-center">
-                <a href="{{ route('tasks.edit',$task->id)}}" class="w-2/4 bg-sky-400 hover:bg-sky-500 duration-300 p-2 ml-1 mr-1 rounded flex justify-center cursor-pointer">Edit</a>
+                <a href="{{ route('tasks.edit',$task->id) }}" class="w-2/4 bg-sky-400 hover:bg-sky-500 duration-300 p-2 ml-1 mr-1 rounded flex justify-center cursor-pointer">Edit</a>
                 <form action="{{ route('tasks.destroy', $task->id) }}" method="post" class="w-2/4 bg-red-500 p-2 rounded flex justify-center cursor-pointer hover:bg-red-600 duration-300 text-white">
                     @csrf
                     @method('DELETE')

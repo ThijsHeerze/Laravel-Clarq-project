@@ -24,6 +24,7 @@
 </head>
 <body class="text-black">
     <h1 class="flex justify-center text-7xl m-20 pr-5">Welcome user, <a class="text-red-500 ml-5" href="{{ route('tasks.index') }}">log out</a></h1>
+    <hr class="mb-5">
     <table class="flex justify-center">
         <tr class="bg-gray-300 bg-opacity-40 max-w-md">
             <th class="">User</th>

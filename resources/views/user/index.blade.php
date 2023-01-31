@@ -46,10 +46,10 @@
         </tr>
         @foreach($users as $user)
         <tr class="bg-gray-200 bg-opacity-5">
-            <td class="">{{$user->name}}</td>
-            <td class="">{{$user->email}}</td>
+            <td class="">{{ $user->name }}</td>
+            <td class="">{{ $user->email }}</td>
             <td class="flex justify-center">
-                <a href="{{ route('users.edit',$user->id)}}" class="w-2/4 bg-sky-400 hover:bg-sky-500 duration-300 p-2 ml-1 mr-1 rounded flex justify-center cursor-pointer">Edit</a>
+                <a href="{{ route('users.edit',$user->id) }}" class="w-2/4 bg-sky-400 hover:bg-sky-500 duration-300 p-2 ml-1 mr-1 rounded flex justify-center cursor-pointer">Edit</a>
                 <form class="w-2/4 bg-red-500 p-2 rounded flex justify-center cursor-pointer hover:bg-red-600 duration-300 text-white" action="{{ route('users.destroy', $user->id) }}" method="post">
                     @csrf
                     @method('DELETE')

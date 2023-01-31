@@ -60,6 +60,7 @@ class TaskController extends Controller
         //Edit is for displaying a form to apply changes
     {
         $category = Category::all();
+        //haalt alle categorieën op
         $task = Task::where('id', $id)->first();
         return view('task.edit')->with([
             'task'=>$task,

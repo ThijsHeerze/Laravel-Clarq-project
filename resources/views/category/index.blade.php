@@ -44,6 +44,7 @@
             <th class="columns-2">Action</th>
         </tr>
         @foreach($categories as $category)
+            // haalt alle categorieën op
             <tr class="bg-gray-200 bg-opacity-5">
                 <td class="">{{$category->name}}</td>
                 <td class="flex justify-center">

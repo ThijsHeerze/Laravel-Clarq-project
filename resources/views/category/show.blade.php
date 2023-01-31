@@ -25,11 +25,15 @@
             <th class="">Deadline</th>
         </tr>
         @foreach($category->tasks as $task)
+{{--            haalt alle taken op--}}
             <tr class="bg-gray-200 bg-opacity-5">
                 <td class="">{{$task->user->name}}</td>
-                @foreach($task->categories as $category)
-                    <td class="">{{$category->name}}</td>
-                @endforeach
+                <td class="">
+                    @foreach($task->categories as $category)
+{{--                        haalt de categorieën op die gekoppelt zijn aan 1 taak--}}
+                        {{ $category->name }},
+                    @endforeach
+                </td>
                 <td class="">{{$task->title}}</td>
                 <td class="">{{$task->description}}</td>
                 <td class="">{{$task->deadline}}</td>

@@ -19,7 +19,8 @@ class Task extends Model
 
     public function categories()
     {
-        //Many-to-many relationships are defined by writing a method that returns the result of the belongsToMany method
+        //Many-to-many relationships are defined by writing a method that returns the result of the belongsToMany method.
+        //Dat betekent dat je aan een taak meerdere categorieën kunt koppelen maar ook aan een categorie meerdere taken
         return $this->belongsToMany(Category::class);
     }
 }
