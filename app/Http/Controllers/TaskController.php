@@ -13,6 +13,7 @@ class TaskController extends Controller
 {
     public function index()
     {
+        //haalt alle taken op
         $task = Task::with([
             'categories'
         ])->get();
@@ -40,28 +41,27 @@ class TaskController extends Controller
             'description' => $request->get('description'),
             'deadline' => $request->get('deadline')
         ]);
-        //
+        //het syngroniseren van categories vanuit task, maakt een request aan en haalt de category_id op
+        //Null coalescing. Bij '??' word de eerste uitdrukking slechts een keer geëvalueerd
         $task->categories()->sync($request->get('category_id') ?? []);
         return redirect()->route('tasks.index');
     }
 
     public function show($id)
     {
-        $task = Task::where('id', $id)->first();
-        if (is_null($task)) {
-            return abort(404, 'error');
-        }
+        //haalt task op met de id
+        $task = Task::findOrFail($id);
         return view('task.show')->with([
             'task' =>$task
         ]);
     }
 
     public function edit($id)
-        //Edit is for displaying a form to apply changes
+        //Edit is voor het weergeven van een formulier om te kunnen editen
     {
-        $category = Category::all();
         //haalt alle categorieën op
-        $task = Task::where('id', $id)->first();
+        $category = Category::all();
+        $task = Task::findOrFail($id);
         return view('task.edit')->with([
             'task'=>$task,
             'categories'=>$category
@@ -71,7 +71,7 @@ class TaskController extends Controller
     public function update(Request $request, $id)
         //Update is used to set them up to server
     {
-        $task = Task::where('id', $id)->first();
+        $task = Task::findOrFail($id);
         $task->update([
             'title' => $request->get('title'),
             'description' => $request->get('description'),

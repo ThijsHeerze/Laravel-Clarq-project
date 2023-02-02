@@ -17,8 +17,8 @@
             <x-forms.input type="text" id="name" name="name" value="{{$user->name}}"/>
             <label for="email">Email</label>
             <x-forms.input type="text" id="email" name="email" value="{{$user->email}}"/>
-{{--            <label for="password">Password</label>--}}
-{{--            <x-forms.input type="password" id="password" name="password" value="{{$user->password}}"/>--}}
+            <label for="password">Password</label>
+            <x-forms.input type="password" id="password" name="password" value="{{$user->password}}"/>
             <x-forms.button type="submit" id="submit" name="submit" value="submit"/>
         </div>
     </form>

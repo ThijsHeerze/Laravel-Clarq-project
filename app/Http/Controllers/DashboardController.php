@@ -11,7 +11,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // alleen tasks van de user waarvan je bent ingelogd
+        // haalt alleen tasks op van de user die is ingelogd
         $task = Task::where('user_id', auth()->user()->id)->get();
         return view('dashboard.index')->with([
             'tasks'=>$task
@@ -31,42 +31,40 @@ class DashboardController extends Controller
             'description' => $request->get('description'),
             'deadline' => $request->get('deadline')
         ]);
-        return redirect()->route('tasks.index');
+        return redirect()->route('dashboard.index');
     }
 
     public function show($id)
     {
-        $task = Task::where('id', $id)->first();
-        if (is_null($task)) {
-            return abort(404, 'error');
-        }
-        return view('task.show')->with([
+        $task = Task::findOrFail($id);
+        return view('dashboard.show')->with([
             'task' =>$task
         ]);
     }
 
     public function edit($id)
     {
-        $task = Task::where('id', $id)->first();
-        return view('task.edit')->with([
+        //The Laravel Eloquent first() method will help us to return the first record found from the database
+        $task = Task::findOrFail($id);
+        return view('dashboard.edit')->with([
             'task'=>$task
         ]);
     }
 
     public function update(Request $request, $id)
     {
-        $task = Task::where('id', $id)->first();
+        $task = Task::findOrFail($id);
         $task->update([
             'title' => $request->get('title'),
             'description' => $request->get('description'),
             'deadline' => $request->get('deadline')
         ]);
-        return redirect()->route('tasks.index');
+        return redirect()->route('dashboard.index');
     }
 
     public function destroy($id)
     {
         Task::destroy($id);
-        return redirect()->route('tasks.index');
+        return redirect()->route('dashboard.index');
     }
 }

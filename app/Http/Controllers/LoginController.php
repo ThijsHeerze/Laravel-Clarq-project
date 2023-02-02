@@ -20,10 +20,10 @@ class LoginController extends Controller
         return view('login.index');
     }
 
-    protected function guard()
-    {
-        return Auth::guard('guard-name');
-    }
+//    protected function guard()
+//    {
+//        return Auth::guard('guard-name');
+//    }
 
     public function postLogin(Request $request)
     {

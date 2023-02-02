@@ -22,10 +22,7 @@ class UserController extends Controller
 
     public function create()
     {
-        $user = User::all();
-        return view('user.create')->with([
-            'user' => $user
-        ]);
+        return view('user.create');
     }
 
     public function store(UpdateUserRequest $request)
@@ -42,10 +39,7 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $user = User::where('id', $id)->first();
-        if (is_null($user)) {
-            return abort(404, 'error');
-        }
+        $user = User::findOrFail($id);
         return view('user.show')->with([
             'user' => $user,
         ]);
@@ -53,15 +47,15 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $user = User::where('id', $id)->first();
+        $user = User::findOrFail($id);
         return view('user.edit')->with([
             'user'=>$user
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
-        $user = User::where('id', $id)->first();
+        $user = User::findOrFail($id);
         $password = $request->get('password');
         $hashed = Hash::make($password);
         $user->update([

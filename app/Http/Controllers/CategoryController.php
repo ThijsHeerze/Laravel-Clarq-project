@@ -21,10 +21,7 @@ class CategoryController extends Controller
 
     public function create()
     {
-        $category = Category::all();
-        return view('category.create')->with([
-            'categories'=>$category,
-        ]);
+        return view('category.create');
     }
 
     public function store(Request $request)
@@ -38,10 +35,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         $task = Task::all();
-        $category = Category::where('id', $id)->first();
-        if (is_null($category)) {
-            return abort(404, 'error');
-        }
+        $category = Category::findOrFail($id);
         return view('category.show')->with([
             'category' => $category,
             'task' => $task
@@ -50,7 +44,7 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
-        $category = Category::where('id', $id)->first();
+        $category = Category::findOrFail($id);
         return view('category.edit')->with([
             'category'=>$category
         ]);
@@ -58,7 +52,7 @@ class CategoryController extends Controller
 
     public function update(Request $request, $id)
     {
-        $category = Category::where('id', $id)->first();
+        $category = Category::findOrFail($id);
         $category->update([
             'name' => $request->get('name'),
         ]);
